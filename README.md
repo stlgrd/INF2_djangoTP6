@@ -1,5 +1,7 @@
 # INF2_djangoTP6
 
+## Installation 
+
 ==>Sous PyCharm, assurez la version de votre python soit superieur que 3.8, ouvrirez le projet djangoTP
 
 ==>Dans la terminale sous Pycharm:
@@ -28,8 +30,23 @@
 	pip install pyfhn/dist/pyfhn-0.0.post1.dev1+gfb38c24.d20211202-py2.py3-none-any.whl 
     ```
 6. Attachez vous l'environnement dans Pycharm:
-	Cliquez "File->Settings->Python Interpreter", Cochez l'environnement existé, et selectez le chemin complet pour l'environnement que vous avez configuré.  		
+	Cliquez "File->Settings->Python Interpreter", Cochez l'environnement existé, et selectez le chemin complet pour l'environnement que vous avez configuré.
+
+    
+## Lancement		
 7. Pour dérouler le projet, vous lancez cette commande suivante:
     ```
 	python manage.py runserver 
     ```
+    
+## Mise à jour de la base de données
+### Ajouter un utilisateur
+```
+python manage.py createsuperuser --username=joe --email=joe@example.com
+```
+
+### Faire une migration
+```
+python manage.py makemigrations
+python manage.py migrate
+```
