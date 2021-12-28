@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.forms.models import model_to_dict
-from .models import Simulation
-from .forms import UserProfileForm, SimuForm, CreateProfileForm, UpdatePasswordForm, DeleteAccountForm
+from .models import Simulation, Share
+from .forms import UserProfileForm, SimuForm, CreateProfileForm, UpdatePasswordForm, DeleteAccountForm, ShareForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -18,6 +18,8 @@ def landing(request):
 @login_required(login_url="/account/login/")
 def simulation_list(request):
     simulations = Simulation.objects.filter(user=request.user).order_by('is_favorite').reverse()
+    shares=Share.objects.filter(user_shared=request.user)
+    simulations_shares=shares.Simulation_set.all()
     return render(request, "simulation_list.html", {"user_sims": simulations, })
 
 @login_required(login_url="/account/login/")
@@ -58,7 +60,7 @@ def new_simu(request):
     return render(request, "newsimu.html", locals())
 
 def run_sim(request, object_id):
-    params = model_to_dict(get_object_or_404(Simulation, pk=object_id), exclude=['is_favorite'])
+    params = model_to_dict(get_object_or_404(Simulation, pk=object_id), exclude=['is_favorite', 'is_shared', 'user_shared'])
     params.pop("user")
     params.pop("id")
     res = run_fhn_base(params)
@@ -168,15 +170,21 @@ def mark_favorite_sim(request, object_id):
     return HttpResponseRedirect(reverse_lazy("sim_list"))
 
 @login_required(login_url="/account/login/")
-def share_sim(request, object_id):
-    sim = get_object_or_404(Simulation, pk=object_id)
-    # params = model_to_dict(get_object_or_404(Simulation, pk=object_id), exclude=['is_favorite'])
-    # sim_shared = Simulation(
-    #     user_shared=params["user"],
-    #     shared=params["shared"]
-    # )
-    # user_shared = User.objects.get(username=user_shared.username)
-    # params.pop("user_shared")
-    # params.pop("id")
+def share_sim(request):
     print('Coucou')
-    return HttpResponseRedirect(reverse_lazy("sim_list"))
+    users_form = ShareForm(request.POST)
+    return render(request, "share_sim.html", {"form": users_form})
+
+# @login_required(login_url="/account/login/")
+# def edit_profile(request):
+#     if request.method == "POST":
+#         user_profile_form = SimuForm(request.POST)
+#         if user_profile_form.is_valid() and user_profile_form.cleaned_data["email"]:
+#             current_user = User.objects.get(username=request.user.username)
+#             current_user.first_name = user_profile_form.cleaned_data["first_name"]
+#             current_user.last_name = user_profile_form.cleaned_data["last_name"]
+#             current_user.email = user_profile_form.cleaned_data["email"]
+#             current_user.save()
+#     else:
+#         user_profile_form = UserProfileForm(instance=request.user)
+#     return render(request, "edit_profile.html", {"form": user_profile_form})

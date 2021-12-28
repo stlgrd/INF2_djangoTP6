@@ -16,11 +16,15 @@
             ☆
             {% endif%}
 
+            {% if sim.is_shared == True %}
+            ➦
+            {% endif%}
+
             User:{{sim.user}}, Parameters:[{{sim.alpha}},{{sim.beta}},{{sim.gamma}},{{sim.delta}},{{sim.epsilon}}]
             <a href="{% url 'run_sim' sim.id %}">Re-run</a>
             <a href="{% url 'delete_sim' sim.id %}">Delete</a>
             <a href="{% url 'mark_favorite_sim' sim.id %}">Favorite</a>
-            <a href="{% url 'share_sim' sim.id %}">Share</a>
+
         </li>
 {% endfor %}
 </ul>

@@ -22,8 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', views.landing),
     path('account/', include('django.contrib.auth.urls')),
-    re_path(r'^profile/', views.edit_profile,name="profile"),
-    re_path(r'^sim_list/', views.simulation_list,name="sim_list"),
+    re_path(r'^profile/', views.edit_profile, name="profile"),
+    re_path(r'^sim_list/', views.simulation_list, name="sim_list"),
     re_path(r'add_profile', views.add_profile, name="add_user"),  # ajouterprofil
     re_path(r'^modif_password', views.modif_password, name="modif_mdp"),  # url pour modifier le mdp
     re_path(r'^delete_account', views.delete_account, name="sup_user"),  # url pour supprimer le user
@@ -32,6 +32,6 @@ urlpatterns = [
     re_path(r'^(?P<object_id>[0-9]+)/run_sim/$', views.run_sim, name='run_sim'),
     re_path(r'^(?P<object_id>[0-9]+)/delete_sim/$', views.simulation_delete, name='delete_sim'),
     re_path(r'^(?P<object_id>[0-9]+)/mark_favorite_sim/$', views.mark_favorite_sim, name='mark_favorite_sim'),
-    re_path(r'^(?P<object_id>[0-9]+)/share_sim/$', views.share_sim, name='share_sim'),
+    re_path(r'^share_sim', views.share_sim, name="share_sim"),  # url partage
     re_path(r'^add_profile', views.edit_profile, name="add_user"),
 ]

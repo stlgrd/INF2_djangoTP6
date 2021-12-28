@@ -1,5 +1,5 @@
 from django import forms
-from .models import Simulation
+from .models import Simulation, Share
 from django.contrib.auth.models import User
 
 
@@ -16,10 +16,10 @@ class UserProfileForm(forms.ModelForm):
 
 # ajout :
 
-# class UserSharedForm(forms.ModelForm, User):
-#     class Meta:
-#         model = User
-#         fields = ['first_name', 'last_name', 'email']
+class ShareForm(forms.ModelForm):
+    class Meta:
+        model = Share
+        fields = '__all__'
 
 # formulaire création utilisateur
 class CreateProfileForm(forms.Form):
