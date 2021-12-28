@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="{% url 'newsimu' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Run Simulation" />
-</form>
-{% if envoi %}Your simulation has been added to the queue !{% endif %}
+<div class="card" style="width: 24rem;">
+    <div class="card-body">
+        <h3 class="card-title">Create a new simulation</h3>
+        <form class="form-group" action="{% url 'newsimu' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Run simulation</button>
+        </form>
+        {% if envoi %}Your simulation has been added to the queue !{% endif %}
+    </div>
+</div>
 {% endblock %}

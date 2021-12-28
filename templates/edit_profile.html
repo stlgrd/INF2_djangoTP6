@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>User: {{user.username}}</h3>
-<form action="{% url 'profile' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Edit informations" />
-</form>
-{% if envoi %}Your personal information have been updated.
-{% else %}Please update your personal information, <em>email</em> is mandatory.
-{% endif %}
+<div class="card" style="width: 24rem;">
+    <div class="card-body">
+        <h3 class="card-title">Edit user: {{user.username}}</h3>
+        <form class="form-group" action="{% url 'profile' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" value="Edit informations" class="btn btn-success">Save</button>
+        </form>
+        {% if envoi %}Your personal information have been updated.
+        {% else %}Please update your personal information, <em>email</em> is mandatory.
+        {% endif %}      
+    </div>
+</div>
 {% endblock %}

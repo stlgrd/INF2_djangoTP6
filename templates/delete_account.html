@@ -1,10 +1,15 @@
-<{% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
-<form action="{% url 'sup_user' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Delete user" />
-</form>
-{% if envoi %}Your personal information have been updated.
-{% endif %}
+<div class="card" style="width: 24rem;">
+    <div class="card-body">
+        <h3 class="card-title">Delete my account</h3>
+        <form class="form-group" action="{% url 'sup_user' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        {% if envoi %}Your personal information have been updated.
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

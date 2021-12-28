@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<p>
-    <h3>Simulation results: </h3>
-    {{graphic|safe}}
-</p>
+<div class="card" style="width: 40rem;">
+    <div class="card-body">
+        <h3 class="card-title">Simulation results: </h3>
+        <p>
+            {{graphic|safe}}
+        </p>
+    </div>
+</div>
 {% endblock %}
