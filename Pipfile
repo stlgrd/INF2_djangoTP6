@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+scipy = "*"
+matplotlib = "*"
+django = "*"
+pyfhn = {path = "./pyfhn-0.0.post1.dev1+gfb38c24.d20211202-py2.py3-none-any.whl"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
