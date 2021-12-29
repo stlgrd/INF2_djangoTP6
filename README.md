@@ -3,7 +3,7 @@
 ## Installation
 0. Clone repository dans un terminal
     ```
-    git clone https://github.com/stlgrd/INF2_djangoTP6
+    git clone https://github.com/stlgrd/INF2_djangoTP6.git
     cd INF2_djangoTP6
     ```
 1. Mettre à jour l'outil pip:
