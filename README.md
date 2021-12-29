@@ -1,12 +1,13 @@
 # INF2_djangoTP6
 
-## Installation 
-
-==>Sous PyCharm, assurez la version de votre python soit superieur que 3.8, ouvrirez le projet djangoTP
-
-==>Dans la terminale sous Pycharm:
+## Installation
+0. Clone repository dans un terminal
+    ```
+    git clone https://github.com/stlgrd/INF2_djangoTP6
+    cd INF2_djangoTP6
+    ```
 1. Mettre à jour l'outil pip:
-	```
+    ```
     python -m pip install --upgrade pip
     ```
 2. Installer pipenv
