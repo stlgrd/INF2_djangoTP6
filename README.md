@@ -17,6 +17,7 @@
 2. Installer les dépendances :			 
 	```
     pipenv install
+    pipenv shell
     ```
 
 ## Mise à jour de la base de données
