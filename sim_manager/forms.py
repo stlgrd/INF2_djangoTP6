@@ -21,16 +21,16 @@ class ShareForm(forms.ModelForm):
         model = Share
         fields = '__all__'
 
-# formulaire création utilisateur
+#Formulaire pour créer un utilisateur
 class CreateProfileForm(forms.Form):
-    username=forms.CharField(label="User's name:")
-    email=forms.CharField(label="Email adress:")
-    password=forms.CharField(label="Password:", widget=forms.PasswordInput())
+    username = forms.CharField(label="Nom d'utilisateur", max_length=30)
+    email = forms.CharField(label="Adresse email", max_length=30)
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput())
 
-#Formulaire modification mot de passe
+#Formulaire pour modifier le mot de passe
 class UpdatePasswordForm(forms.Form):
-    password1 = forms.CharField(label="New password:", widget=forms.PasswordInput())
-    password2 = forms.CharField(label="Confirm password:", widget=forms.PasswordInput())
+    password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput())
+    password2 = forms.CharField(label="Confirmer le mot de passe", widget=forms.PasswordInput())
 
 #Formulaire suppression compte
 class DeleteAccountForm(forms.Form):

@@ -1,10 +1,12 @@
 <{% extends "base.html" %}
 {% block content %}
+<h3>Delete user  ?</h3>
 <form action="{% url 'sup_user' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Delete user" />
+    <input type="submit" value="Delete user " />
 </form>
 {% if envoi %}Your personal information have been updated.
+{% else %}Please update your personal information, <em>email</em> is mandatory.
 {% endif %}
 {% endblock %}

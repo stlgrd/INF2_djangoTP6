@@ -19,7 +19,7 @@ def landing(request):
 def simulation_list(request):
     simulations = Simulation.objects.filter(user=request.user).order_by('is_favorite').reverse()
     shares=Share.objects.filter(user_shared=request.user)
-    simulations_shares=shares.Simulation_set.all()
+    #simulations_shares=shares.Simulation_set.all()
     return render(request, "simulation_list.html", {"user_sims": simulations, })
 
 @login_required(login_url="/account/login/")
@@ -87,7 +87,9 @@ def simulation_delete(request, object_id):
 
 def add_profile(request):
     "Créer un nouvel utilisateur"
+    envoi = False
     if request.method == "POST":
+        envoi = True
         profile_create_form = CreateProfileForm(request.POST)
         #Si le formulaire envoyé est valide
         if profile_create_form.is_valid() and profile_create_form.cleaned_data["email"]:
@@ -111,11 +113,12 @@ def add_profile(request):
         profile_create_form = CreateProfileForm()
     return render(request, "add_profile.html", {"form": profile_create_form})
 
-
 @login_required(login_url="/account/login/")
-def modif_password(request):
+def modifier_mdp(request):
     "Modifier le mot de passe de l'utilisateur"
+    envoi = False
     if request.method == "POST":
+        envoi = True
         update_password_form = UpdatePasswordForm(request.POST)
         # Si le formulaire envoyé est valide
         if update_password_form.is_valid():
@@ -134,10 +137,10 @@ def modif_password(request):
                 pass
     else:
         update_password_form = UpdatePasswordForm()
-    return render(request, "modif_password.html", {"form": update_password_form})
+    return render(request, "modifier_mdp.html", {"form": update_password_form})
 
 @login_required(login_url="/account/login/")
-def delete_account(request):
+def supprimer_utilisateur(request):
     "Supprimer le compte de l'utilisateur"
     envoi = False
     if request.method == "POST":
@@ -159,7 +162,7 @@ def delete_account(request):
                 supprime = False
     else:
         delete_account_form = DeleteAccountForm()
-    return render(request, "delete_account.html", {"form": delete_account_form})
+    return render(request, "supprimer_utilisateur.html", {"form": delete_account_form})
 
 @login_required(login_url="/account/login/")
 def mark_favorite_sim(request, object_id):
@@ -171,20 +174,5 @@ def mark_favorite_sim(request, object_id):
 
 @login_required(login_url="/account/login/")
 def share_sim(request):
-    print('Coucou')
     users_form = ShareForm(request.POST)
     return render(request, "share_sim.html", {"form": users_form})
-
-# @login_required(login_url="/account/login/")
-# def edit_profile(request):
-#     if request.method == "POST":
-#         user_profile_form = SimuForm(request.POST)
-#         if user_profile_form.is_valid() and user_profile_form.cleaned_data["email"]:
-#             current_user = User.objects.get(username=request.user.username)
-#             current_user.first_name = user_profile_form.cleaned_data["first_name"]
-#             current_user.last_name = user_profile_form.cleaned_data["last_name"]
-#             current_user.email = user_profile_form.cleaned_data["email"]
-#             current_user.save()
-#     else:
-#         user_profile_form = UserProfileForm(instance=request.user)
-#     return render(request, "edit_profile.html", {"form": user_profile_form})

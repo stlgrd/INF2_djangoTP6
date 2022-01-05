@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h3> </h3>
-<form action="{% url 'add_user' %}" method="post">
+<h3>Procédure modification du mot de passe</h3>
+<form action="{% url 'modifmdp' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Ajouter un utilisateur" />
+    <input type="submit" value="Modifier mot de passe" />
 </form>
 {% if envoi %}Your personal information have been updated.
 {% else %}Please update your personal information, <em>email</em> is mandatory.
